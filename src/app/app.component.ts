@@ -15,10 +15,12 @@ export class AppComponent {
 
   constructor(private router: Router, private employeeService: EmployeeService) {}
    ngOnInit(): void {
-    if (window.location.pathname === '/employees') {
+    if (window.location.pathname === '/' || window.location.pathname === '/employees' ) {
       this.router.navigate(['/welcome']);
     } else if (window.location.pathname === '/view/:id' || '/edit/:id' || 'add'){
       this.router.navigate(['/employees']);
+    } else{
+      this.router.navigate(['/welcome']);
     }
   }
 }

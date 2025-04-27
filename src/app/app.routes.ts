@@ -8,7 +8,7 @@ import { NgModule } from '@angular/core';
 
 
 export const appRoutes: Routes = [
-    { path: '', component: WelcomeComponent }, 
+    { path: '', redirectTo: '/welcome', pathMatch: 'full' }, 
     { path: 'welcome', component: WelcomeComponent },
     { path: 'employees', component: EmployeeListComponent },
     { path: 'add', component: EmployeeFormComponent },

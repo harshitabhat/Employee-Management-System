@@ -32,7 +32,8 @@
               "node_modules/ngx-toastr/toastr.css"
 
             ],
-            "scripts": []
+            "scripts": [],
+            "baseHref": "/Employee-Management-System/"
           },
           "configurations": {
             "production": {
