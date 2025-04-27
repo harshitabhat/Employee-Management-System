@@ -1,0 +1,14 @@
+
+  .full-width {
+    width: 50%;
+    margin-bottom: 20px;  
+  } 
+  
+  .success-snackbar {
+    color: white;
+  }
+  
+  .error-snackbar {
+    color: white;
+  }
+  

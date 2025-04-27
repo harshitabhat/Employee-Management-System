@@ -1,0 +1,60 @@
+<div style="max-width: 600px; margin: 40px auto; padding: 24px;">
+    <h2 style="text-align: center; margin-bottom: 32px;">
+      {{ isEditMode ? 'Edit Employee' : 'Add New Employee' }}
+    </h2>
+  
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" placeholder="Enter employee name" />
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Company</mat-label>
+          <input matInput formControlName="company" placeholder="Enter company name" />
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" placeholder="Enter email address" />
+          <mat-error *ngIf="employeeForm.get('email')?.invalid && (employeeForm.get('email')?.touched || employeeForm.get('email')?.dirty)">
+            Please enter a valid email address.
+          </mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Contact</mat-label>
+          <input matInput formControlName="contact" placeholder="Enter contact number" />
+          <mat-error *ngIf="employeeForm.get('contact')?.invalid && (employeeForm.get('contact')?.touched || employeeForm.get('contact')?.dirty)">
+            Please enter a valid contact number.
+          </mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Designation</mat-label>
+          <input matInput formControlName="designation" placeholder="Enter designation" />
+        </mat-form-field>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 32px;">
+        <button
+          mat-raised-button
+          [disabled]="employeeForm.invalid"
+          type="submit"
+        
+        >
+          {{ isEditMode ? 'Update' : 'Add' }}
+        </button>
+  
+        <button
+          mat-stroked-button
+          type="button"
+          (click)="router.navigate(['/employees'])"
+          class="cancel-button"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+  

@@ -1,0 +1,31 @@
+<div class="employee-detail-container">
+
+  <h2 class="employee-detail-heading">Employee Details</h2>
+
+  <mat-card class="employee-detail-card">
+    <mat-card-header>
+      <img mat-card-avatar [src]="employee?.avatar" alt="{{ employee?.name }}" class="employee-avatar"/>
+      <mat-card-title class="employee-name">{{ employee?.name }}</mat-card-title>
+      <mat-card-subtitle class="employee-subtitle">{{ employee?.designation }} - {{ employee?.company }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-divider class="divider"></mat-divider>
+
+    <mat-card-content>
+      <div class="employee-info">
+        <div><strong>Email:</strong> {{ employee?.email }}</div>
+        <div><strong>Phone:</strong> {{ employee?.contact }}</div>
+        <div><strong>Company:</strong> {{ employee?.company }}</div>
+        <div><strong>Designation:</strong> {{ employee?.designation }}</div>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions class="employee-action">
+      <button mat-raised-button color="primary" (click)="router.navigate(['/employees'])">
+        Back to Employee List
+      </button>
+    </mat-card-actions>
+
+  </mat-card>
+
+</div>

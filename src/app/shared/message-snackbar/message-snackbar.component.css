@@ -1,0 +1,20 @@
+:host {
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+  }
+  
+  span {
+    color: white;
+    font-size: 16px;
+  }
+  .close-icon {
+    color: red;
+    font-size: 20px; 
+    cursor: pointer;
+    margin-left: 20px;
+  }
+  
+  .close-icon:hover {
+    color: darkred; 
+  }
