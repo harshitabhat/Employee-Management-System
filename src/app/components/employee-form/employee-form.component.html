@@ -35,6 +35,15 @@
           <mat-label>Designation</mat-label>
           <input matInput formControlName="designation" placeholder="Enter designation" />
         </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Gender</mat-label>
+          <mat-select formControlName="gender">
+            <mat-option value="male">Male</mat-option>
+            <mat-option value="female">Female</mat-option>
+          </mat-select>
+        </mat-form-field>
+        
       </div>
       <div style="display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 32px;">
         <button

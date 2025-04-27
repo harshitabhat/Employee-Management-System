@@ -6,4 +6,5 @@ export interface Employee {
     contact: string;
     designation: string;
     avatar: string;
+    gender: 'male' | 'female';
   }

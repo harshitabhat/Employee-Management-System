@@ -14,7 +14,8 @@ export class EmployeeService {
       email: 'rahul@techcorp.com',
       contact: '9876543210',
       designation: 'Software Engineer',
-      avatar: this.getRandomAvatar()
+      avatar: this.getRandomAvatar('male'),
+      gender: 'male' 
     },
     {
       id: 2,
@@ -23,18 +24,22 @@ export class EmployeeService {
       email: 'priya@innovatex.com',
       contact: '9123456780',
       designation: 'Project Manager',
-      avatar: this.getRandomAvatar()
+      avatar: this.getRandomAvatar('female'),
+      gender: 'female' 
     }
   ];
-
-
 
   constructor() { 
     const data = localStorage.getItem('employees');
     if (data) {
       this.employees = JSON.parse(data);
+      this.employees.forEach(employee => {
+        employee.avatar = this.getRandomAvatar(employee.gender); 
+      });
     }
-  }
+    this.saveToLocalStorage();
+    }
+  
 
   getAllEmployees(): Employee[] {
     return this.employees;
@@ -46,7 +51,7 @@ export class EmployeeService {
 
   addEmployee(employee: Employee) {
     employee.id = this.generateNewId();
-    employee.avatar = this.getRandomAvatar();
+    employee.avatar = this.getRandomAvatar(employee.gender); 
     this.employees.push(employee);
     this.saveToLocalStorage();
   }
@@ -54,6 +59,10 @@ export class EmployeeService {
   updateEmployee(updatedEmp: Employee) {
     const index = this.employees.findIndex(emp => emp.id === updatedEmp.id);
     if (index !== -1) {
+      if (this.employees[index].gender !== updatedEmp.gender) {
+        updatedEmp.avatar = this.getRandomAvatar(updatedEmp.gender);
+      }
+
       this.employees[index] = updatedEmp;
       this.saveToLocalStorage();
     }
@@ -70,9 +79,11 @@ export class EmployeeService {
       : 1;
   }
 
-  public getRandomAvatar(): string {
+  public getRandomAvatar(gender: 'male' | 'female'): string {
     const id = Math.floor(Math.random() * 90) + 10;
-    return `https://randomuser.me/api/portraits/men/${id}.jpg`;
+    return gender === 'female'
+      ? `https://randomuser.me/api/portraits/women/${id}.jpg`
+      : `https://randomuser.me/api/portraits/men/${id}.jpg`;
   }
 
   private saveToLocalStorage() {

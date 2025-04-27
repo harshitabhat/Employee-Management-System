@@ -9,6 +9,7 @@ import { EmployeeService } from '../../services/employee.service';
 import { Employee } from '../../models/employee.model';
 import { MessageSnackbarComponent } from '../../shared/message-snackbar/message-snackbar.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
@@ -22,7 +23,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    
+    MatSelectModule
   ]
 })
 export class EmployeeFormComponent implements OnInit {
@@ -44,7 +45,8 @@ export class EmployeeFormComponent implements OnInit {
       company: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       contact: ['', [Validators.required,Validators.pattern('^[0-9]{10}$')]],
-      designation: ['', Validators.required]
+      designation: ['', Validators.required],
+      gender : ['', Validators.required]
     });
     
     const idParam = this.route.snapshot.paramMap.get('id');
@@ -83,7 +85,7 @@ export class EmployeeFormComponent implements OnInit {
       ...this.employeeForm.value,
       avatar: this.isEditMode
         ? this.employeeService.getEmployeeById(this.employeeId)?.avatar || ''
-        : this.employeeService.getRandomAvatar()
+        : this.employeeService.getRandomAvatar(this.employeeForm.value.gender)
     };
   
     if (this.isEditMode) {
